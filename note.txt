@@ -1,0 +1,106 @@
+            <v-group v-for="(item, index) in items" :key="index"
+                :config="{ x: centerX, y: centerY + 130 * (index + 1) }">
+
+                <!-- Rectangle -->
+                <v-rect :config="{
+                    x: -80,
+                    y: 0,
+                    width: 160,
+                    height: 80,        // dinaikkan supaya ada ruang teks tambahan
+                    fill: '#ffffff',
+                    cornerRadius: 5,
+                    shadowColor: 'rgba(0,0,0,0.3)',
+                    shadowBlur: 10,
+                    shadowOffsetX: 3,
+                    shadowOffsetY: 3,
+                    shadowOpacity: 0.5
+                }" />
+
+                <!-- Text utama -->
+                <v-text :config="{
+                    x: -55,
+                    y: 15,            // atas sedikit
+                    width: 110,
+                    text: item.text,
+                    fontSize: 14,
+                    fill: '#000000',
+                    align: 'center'
+                }" />
+
+                <!-- Kata tambahan "INLINE" -->
+                <v-text :config="{
+                    x: -55,
+                    y: 45,           // di bawah text utama
+                    width: 110,
+                    text: 'INLINE',  // hanya satu pilihan
+                    fontSize: 12,
+                    fill: '#000000',
+                    align: 'center',
+                    shadowColor: 'rgba(0,0,0,0.5)',
+                    shadowBlur: 4,
+                    shadowOffsetX: 1,
+                    shadowOffsetY: 1
+                }" />
+
+                <!-- Tombol Close di pojok kanan atas -->
+                <v-group :config="{ x: 90, y: 10 }" @click="removeItem(index)"
+                    @mouseenter="() => stageEl.getNode().container().style.cursor = 'pointer'"
+                    @mouseleave="() => stageEl.getNode().container().style.cursor = 'default'">
+                    <v-circle :config="{
+                        x: -10,
+                        y: -10,
+                        radius: 10,
+                        fill: 'white',
+                        stroke: 'gray',
+                        strokeWidth: 1,
+                        shadowColor: 'rgba(0,0,0,0.3)',
+                        shadowBlur: 5,
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2,
+                        shadowOpacity: 0.5
+                    }" />
+                    <v-text :config="{
+                        x: -14,
+                        y: -17,
+                        text: '×',
+                        fontSize: 16,
+                        fontStyle: 'bold',
+                        fill: '#C27E79'
+                    }" />
+                </v-group>
+
+                <!-- Arrow -->
+                <v-arrow :config="{
+                    points: [0, 80, 0, 130],    // sesuai tinggi rectangle
+                    pointerLength: 5,
+                    pointerWidth: 5,
+                    fill: '#9F9F9F',
+                    stroke: '#9F9F9F',
+                    strokeWidth: 1
+                }" />
+
+                <!-- Tombol plus di awal arrow -->
+                <v-group :config="{ x: 0, y: 80 }" @click="addItem(index)"
+                    @mouseenter="() => stageEl.getNode().container().style.cursor = 'pointer'"
+                    @mouseleave="() => stageEl.getNode().container().style.cursor = 'default'">
+                    <v-circle :config="{
+                        x: 0,
+                        y: 0,
+                        radius: 10,
+                        fill: 'white',
+                        shadowColor: 'rgba(0,0,0,0.6)',
+                        shadowBlur: 8,
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2,
+                        shadowOpacity: 0.5
+                    }" />
+                    <v-text :config="{
+                        x: -4,
+                        y: -6,
+                        text: '+',
+                        fontSize: 14,
+                        fontStyle: 'bold',
+                        fill: '#000'
+                    }" />
+                </v-group>
+            </v-group>
