@@ -30,7 +30,7 @@ const CanvasEditor = defineAsyncComponent({
           </Suspense>
         </ResizablePanel>
         <ResizableHandle with-handle />
-        <ResizablePanel :default-size="30" :max-size="50" :min-size="30" class="p-2">
+        <ResizablePanel :default-size="50" :max-size="50" :min-size="30" class="p-2">
           <Tabs default-value="code">
             <TabsList>
               <TabsTrigger class="w-32" value="workflow">

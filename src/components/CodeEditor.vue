@@ -5,6 +5,7 @@ import { json } from '@codemirror/lang-json'
 import { useEditorStore } from '@/stores/editor'
 import { useWorkflowStore } from '@/stores/workflow'
 import { debounce } from '@/lib/utils'
+import { tomorrow } from 'thememirror'
 
 const editorEl = useTemplateRef('editorEl')
 const editorStore = useEditorStore()
@@ -18,6 +19,7 @@ onMounted(async () => {
       doc: JSON.stringify(workflowStore.workflow, null, 2),
       extensions: [
         basicSetup,
+        tomorrow,
         json(),
         onChangeExtension((value) => {
           workflowStore.changeWorkflowCode(value)

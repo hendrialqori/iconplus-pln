@@ -20,7 +20,7 @@ const layerEl = useTemplateRef('layerEl')
 
 // Stage size
 const stageSize = ref({
-  width: (window.innerWidth * 70) / 100,
+  width: (window.innerWidth * 50) / 100,
   height: window.innerHeight,
   draggable: true,
 })
@@ -149,27 +149,12 @@ onMounted(async () => {
         <ZoomOut class="size-4" />
       </Button>
     </div>
-    <v-stage
-      ref="stageEl"
-      :config="stageSize"
-      @mouseenter="handleMouseEnter"
-      @mouseleave="handleMouseLeave"
-    >
+    <v-stage ref="stageEl" :config="stageSize" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
       <v-layer ref="layerEl">
         <StartNode :x="centerX" :y="centerY + 40" :circleRadius="circleRadius" @add="addItem(-1)" />
-        <Node
-          v-for="(item, index) in workflowStore.workflow?.tasks"
-          :key="JSON.stringify(item)"
-          :index="index"
-          :x="centerX"
-          :y="centerY + 130 * (index + 1)"
-          :text="item.name"
-          :taskReference="item.taskReferenceName"
-          :type="item.type"
-          @add="addItem"
-          @remove="removeItem"
-          @jump="jumpingToRefCode"
-        />
+        <Node v-for="(item, index) in workflowStore.workflow?.tasks" :key="JSON.stringify(item)" :index="index"
+          :x="centerX" :y="centerY + 130 * (index + 1)" :text="item.name" :taskReference="item.taskReferenceName"
+          :type="item.type" @add="addItem" @remove="removeItem" @jump="jumpingToRefCode" />
         <EndNode :x="centerX" :y="endNodeY" :radius="circleRadius" />
       </v-layer>
     </v-stage>
