@@ -1,33 +1,34 @@
-# iconplus-pln
+# Iconplus PLN take home test
+![Screenshoot](public/ss.png)
 
-This template should help get you started developing with Vue 3 in Vite.
+This web automatically fetches to http://localhost:8080/api/metadata/workflow/workflowstandar_billing_mutasi_beban_blok_ke_beban_blok_v2_. Make sure to read the documentation at https://github.com/sonywibisono/conductor-compose and use http://localhost:8080 to open API docs.
 
-## Recommended IDE Setup
+## 📦 Tech Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Vue.js**
+- **Typescript**
+- **Vite**
 
-## Type Support for `.vue` Imports in TS
+## 🧑‍💻 How to Clone and Run
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### 1. Clone the Repository
 
-## Customize configuration
+```
+git clone git@github.com:hendrialqori/iconplus-pln.git
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+cd iconplus-pln
 ```
 
-### Compile and Hot-Reload for Development
+### 2. Run the Frontend  Client)
 
-```sh
-pnpm dev
+```
+npm install
+
+npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+🌐 Visit the app at: http://localhost:5173
+🔗 Ensure the API calls in the client point to http://localhost:3000
 
-```sh
-pnpm build
-```
+## MIT License
+Feel free to use for personal.
