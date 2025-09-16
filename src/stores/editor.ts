@@ -4,31 +4,33 @@ import { EditorView } from 'codemirror'
 import { EditorSelection } from '@codemirror/state'
 
 export const useEditorStore = defineStore('editor', () => {
-    const isEditorReady = ref(false)
-    const editor = ref<EditorView | null>(null)
+  const isEditorReady = ref(false)
+  const editor = ref<EditorView | null>(null)
 
-    function setEditor(newEditor: EditorView) {
-        editor.value = newEditor
-        isEditorReady.value = true
+  function setEditor(newEditor: EditorView) {
+    editor.value = newEditor
+    isEditorReady.value = true
+  }
+
+  function jumpToCode(text: string) {
+    if (!editor.value) return
+
+    const view = editor.value
+    const doc = view.state.doc.toString()
+    const index = doc.indexOf(text)
+    if (index === -1) {
+      console.warn('Text not found:', text)
+      return
     }
 
-    function jumpToCode(text: string) {
-        if (!editor.value) return
-        const doc = editor.value.state.doc.toString()
-        const index = doc.indexOf(text)
-        if (index === -1) {
-            console.warn('Text not found:', text)
-            return
-        }
-        editor.value.dispatch({
-            selection: EditorSelection.cursor(index),
-            scrollIntoView: true,
-        })
-        editor.value.scrollDOM.scrollIntoView({
-            behavior: 'instant',
-            block: 'center',
-        })
-    }
+    // gunakan API resmi untuk scroll
+    view.dispatch({
+      selection: EditorSelection.cursor(index),
+      effects: EditorView.scrollIntoView(index, {
+        y: 'center',
+      }),
+    })
+  }
 
-    return { editor, isEditorReady, setEditor, jumpToCode }
+  return { editor, isEditorReady, setEditor, jumpToCode }
 })
